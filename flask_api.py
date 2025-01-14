@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import io
 import pandas as pd
 import weather_module as wm  # Import the modularized functions
-
+import os
 app = Flask(__name__)
 plt.switch_backend('Agg')
 
@@ -65,4 +65,11 @@ def temperature_trends():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000, debug=True)
+    env = os.getenv('ENVIRONMENT', 'development')  # Default to 'development' if not set
+
+    if env == 'development':
+        app.run()  # dev
+    elif env == 'production':
+        app.run(host='0.0.0.0', port=10000, debug=True)  # prod
+    else:
+        raise ValueError(f"Invalid FLASK_ENV value: {env}. Must be 'development' or 'production'.")
