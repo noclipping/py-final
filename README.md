@@ -13,8 +13,13 @@
 ### create a .env file with the following variables:
 
 ```
-DB_PASSWORD={your neon tech db password}
-DB_HOST={your neon tech host URL}
+DB_PASSWORD=
+DB_HOST=
+DB_USER=
+DB_NAME=
+ENVIRONMENT=
 ```
 
-No curly brackets {} just DB_PASSWORD=yoUrPasSword (example)
+DB values from neon.tech
+
+environment being either "production" or "development"
